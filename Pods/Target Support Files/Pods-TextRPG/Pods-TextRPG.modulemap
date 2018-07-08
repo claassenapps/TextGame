@@ -1,0 +1,6 @@
+framework module Pods_TextRPG {
+  umbrella header "Pods-TextRPG-umbrella.h"
+
+  export *
+  module * { export * }
+}
