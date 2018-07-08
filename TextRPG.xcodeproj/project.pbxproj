@@ -17,6 +17,10 @@
 		327E211B20F1310400A21620 /* InventoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327E211A20F1310400A21620 /* InventoryViewController.swift */; };
 		327E211E20F1352F00A21620 /* DialogueTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327E211D20F1352F00A21620 /* DialogueTableViewController.swift */; };
 		327E212520F14A1B00A21620 /* DialogueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327E212420F14A1B00A21620 /* DialogueCell.swift */; };
+		327E212720F298D200A21620 /* Dialogue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327E212620F298D200A21620 /* Dialogue.swift */; };
+		327E212920F299BB00A21620 /* Todos and Ideas in Resources */ = {isa = PBXBuildFile; fileRef = 327E212820F299BB00A21620 /* Todos and Ideas */; };
+		327E212C20F29DD100A21620 /* DialogueController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 327E212B20F29DD100A21620 /* DialogueController.swift */; };
+		327E212E20F29ED600A21620 /* DialogueList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 327E212D20F29ED600A21620 /* DialogueList.plist */; };
 		3A53CE7CF0F006D220F3681B /* Pods_TextRPG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AE0672D371881C95C925187 /* Pods_TextRPG.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +39,10 @@
 		327E211D20F1352F00A21620 /* DialogueTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogueTableViewController.swift; sourceTree = "<group>"; };
 		327E211F20F139CE00A21620 /* TextRPG-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TextRPG-Bridging-Header.h"; sourceTree = "<group>"; };
 		327E212420F14A1B00A21620 /* DialogueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogueCell.swift; sourceTree = "<group>"; };
+		327E212620F298D200A21620 /* Dialogue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dialogue.swift; sourceTree = "<group>"; };
+		327E212820F299BB00A21620 /* Todos and Ideas */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Todos and Ideas"; sourceTree = "<group>"; };
+		327E212B20F29DD100A21620 /* DialogueController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogueController.swift; sourceTree = "<group>"; };
+		327E212D20F29ED600A21620 /* DialogueList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DialogueList.plist; sourceTree = "<group>"; };
 		3AE0672D371881C95C925187 /* Pods_TextRPG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TextRPG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88E5A5A8D0620738C99DF9DF /* Pods-TextRPG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TextRPG.release.xcconfig"; path = "Pods/Target Support Files/Pods-TextRPG/Pods-TextRPG.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +81,7 @@
 		327E210320F12EF500A21620 /* TextRPG */ = {
 			isa = PBXGroup;
 			children = (
+				327E212820F299BB00A21620 /* Todos and Ideas */,
 				327E210420F12EF500A21620 /* AppDelegate.swift */,
 				327E210620F12EF500A21620 /* TabViewController.swift */,
 				327E211C20F1351200A21620 /* Tabs */,
@@ -87,13 +96,24 @@
 		327E211C20F1351200A21620 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				327E211620F130C000A21620 /* DialogueViewController.swift */,
+				327E212A20F29D8600A21620 /* Dialogue */,
 				327E211820F130E200A21620 /* JournalViewController.swift */,
 				327E211A20F1310400A21620 /* InventoryViewController.swift */,
-				327E211D20F1352F00A21620 /* DialogueTableViewController.swift */,
-				327E212420F14A1B00A21620 /* DialogueCell.swift */,
 			);
 			path = Tabs;
+			sourceTree = "<group>";
+		};
+		327E212A20F29D8600A21620 /* Dialogue */ = {
+			isa = PBXGroup;
+			children = (
+				327E212D20F29ED600A21620 /* DialogueList.plist */,
+				327E211620F130C000A21620 /* DialogueViewController.swift */,
+				327E212B20F29DD100A21620 /* DialogueController.swift */,
+				327E211D20F1352F00A21620 /* DialogueTableViewController.swift */,
+				327E212420F14A1B00A21620 /* DialogueCell.swift */,
+				327E212620F298D200A21620 /* Dialogue.swift */,
+			);
+			path = Dialogue;
 			sourceTree = "<group>";
 		};
 		570CF792CCACD69C08387252 /* Frameworks */ = {
@@ -176,7 +196,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				327E212E20F29ED600A21620 /* DialogueList.plist in Resources */,
 				327E210F20F12EF500A21620 /* LaunchScreen.storyboard in Resources */,
+				327E212920F299BB00A21620 /* Todos and Ideas in Resources */,
 				327E210C20F12EF500A21620 /* Assets.xcassets in Resources */,
 				327E210A20F12EF500A21620 /* Main.storyboard in Resources */,
 			);
@@ -243,9 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				327E212C20F29DD100A21620 /* DialogueController.swift in Sources */,
 				327E211920F130E200A21620 /* JournalViewController.swift in Sources */,
 				327E211E20F1352F00A21620 /* DialogueTableViewController.swift in Sources */,
 				327E210720F12EF500A21620 /* TabViewController.swift in Sources */,
+				327E212720F298D200A21620 /* Dialogue.swift in Sources */,
 				327E211B20F1310400A21620 /* InventoryViewController.swift in Sources */,
 				327E211720F130C000A21620 /* DialogueViewController.swift in Sources */,
 				327E210520F12EF500A21620 /* AppDelegate.swift in Sources */,

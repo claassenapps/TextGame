@@ -11,8 +11,10 @@ import UIKit
 
 class DialogueTableViewController: UITableViewController {
     
-    var conversations: [String] = ["Hello my name is Kevin Claassen. I'm thinking of making a game if I can make this work out. It's going ok, but it's been difficult to really find out how to customize things.", "Goodbye", "Test1", "Test2"]
+//    var conversations: [String] = ["Hello my name is Kevin Claassen. I'm thinking of making a game if I can make this work out. It's going ok, but it's been difficult to really find out how to customize things.", "Goodbye", "Test1", "Test2"]
+    var conversations: NSDictionary
     let constants: Constants
+    //let controller: DialogueController
 
     struct Constants {
         let dialogueFontSize: CGFloat = 15
@@ -26,7 +28,10 @@ class DialogueTableViewController: UITableViewController {
     
     init() {
         self.constants = Constants()
+        //self.controller = DialogueController()
+        self.conversations = DialogueController.sharedInstance.dialogueDictionary! //TODO fix
         super.init(style: .grouped)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,13 +53,16 @@ class DialogueTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         //find the height of the text given the width of the space availble in the tableview
         //if that height is greater than the image size plus spacing, return it
-        if self.conversations.indices.count >= indexPath.row {
+        if self.conversations.count >= indexPath.row {
             let widthOffset = self.constants.imageSize.width + self.constants.imageOffset.left + self.constants.textOffset.left + self.constants.textOffset.right
             let totalCellWidth = tableView.frame.size.width - widthOffset
+
+            let key = "\(indexPath.row + 1)" //converstions is 1-based (0 is an error check for UserDefaults)
+            guard let currentDialogue = self.conversations.value(forKey: key) as? NSDictionary, let theText = currentDialogue.value(forKey: DialogueController.dictionaryKeys.text) as? String else {
+                return 0
+            }
             
-            let string = self.conversations[indexPath.row]
-            let attString = NSAttributedString(string: string, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: self.constants.dialogueFontSize)])
-            
+            let attString = NSAttributedString(string: theText, attributes: [NSAttributedStringKey.font : UIFont.systemFont(ofSize: self.constants.dialogueFontSize)])
             let nameOffset: CGFloat = 10
             let attHeight = attString.height(withConstrainedWidth: totalCellWidth) + self.constants.textOffset.top + self.constants.textOffset.bottom
             let heightThreshold = self.constants.imageSize.height + self.constants.imageOffset.top + self.constants.imageOffset.bottom + nameOffset
@@ -64,8 +72,12 @@ class DialogueTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let dialogue = DialogueController.sharedInstance.getDialogueForID(indexPath.row + 1) else {
+            return UITableViewCell()
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: self.constants.cellIdentifier) ??
-            DialogueCell(text: self.conversations[indexPath.row], reuseIdenfifier: self.constants.cellIdentifier)
+            DialogueCell(dialogue: dialogue, reuseIdentifier: self.constants.cellIdentifier)
         
         if let theCell = cell as? DialogueCell {
             _ = theCell.theImageView.mas_makeConstraints { (make) in

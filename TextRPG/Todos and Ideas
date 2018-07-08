@@ -1,0 +1,4 @@
+
+Create a DialogueController class that maps current Dialogue id to the next Dialogue object based on in-game factors
+
+Consider passing in mood/expression to DialogueCell so the image can change pased on a character's emotions
